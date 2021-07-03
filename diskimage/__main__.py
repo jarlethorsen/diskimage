@@ -28,7 +28,7 @@ def print_info(diskimage):
         else:
             print(f'Found no supported filesystems in this diskimage.')
     else:
-        print(f'*ERROR* File {disk_image} is not a supported diskimage')
+        print(f'*ERROR* File {diskimage} is not a supported diskimage')
 
 
 def main():
