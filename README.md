@@ -28,7 +28,7 @@ or
 You can also use the available python methods directly from your script:
 
 ```python
->>> import diskimage.diskimage as di
+>>> import diskimage as di
 
 >>> image = di.DiskImage.from_file('split.E01')
 

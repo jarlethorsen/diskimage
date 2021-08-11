@@ -1,7 +1,6 @@
 import pytest
 import pytsk3
 import diskimage
-import diskimage.diskimage as di
 
 
 #
@@ -11,8 +10,8 @@ import diskimage.diskimage as di
 # This also test DiskImage.from_file()
 @pytest.fixture
 def image():
-    i = di.DiskImage.from_file('data/mini.dd')
-    assert isinstance(i, di.DiskImage)
+    i = diskimage.DiskImage.from_file('data/mini.dd')
+    assert isinstance(i, diskimage.DiskImage)
     return i
 
 
@@ -45,8 +44,8 @@ class FSType(object):
 
 # Test instantiation of the DiskImage class
 def test_init_diskimage():
-    image = di.DiskImage()
-    assert isinstance(image, di.DiskImage)
+    image = diskimage.DiskImage()
+    assert isinstance(image, diskimage.DiskImage)
 
 
 # Test getting items from a disk image
@@ -83,10 +82,10 @@ def test_diskimage_meta(image):
 
 # Test instantiation of a DiskImage from items from within a DiskImage
 def test_diskimage_from_items(items):
-    image = di.DiskImage.from_items(items, imagename='mini-inner.dd')
-    assert isinstance(image, di.DiskImage)
-    image = di.DiskImage.from_items(items, imagename='mini-inner')
-    assert isinstance(image, di.DiskImage)
+    image = diskimage.DiskImage.from_items(items, imagename='mini-inner.dd')
+    assert isinstance(image, diskimage.DiskImage)
+    image = diskimage.DiskImage.from_items(items, imagename='mini-inner')
+    assert isinstance(image, diskimage.DiskImage)
 
 
 ####################
@@ -98,37 +97,37 @@ def test_split_e01():
     # Only run test if pyewf is available
     try:
         import pyewf
-        i = di.DiskImage.from_file('data/split.E01')
-        assert isinstance(i, di.DiskImage)
+        i = diskimage.DiskImage.from_file('data/split.E01')
+        assert isinstance(i, diskimage.DiskImage)
     except ImportError:
         pass
 
 # Test if NTFS filesystem test works
 def test_isNTFS():
     x = FSType(ftype=pytsk3.TSK_FS_TYPE_NTFS)
-    assert di.IsNTFS(x) is True
+    assert diskimage.IsNTFS(x) is True
     x = FSType(ftype=0)
-    assert di.IsNTFS(x) is False
+    assert diskimage.IsNTFS(x) is False
 
 
 # Test getting imagetype from the file-extension
 def test_get_imagetype():
-    assert di.get_imagetype('image.dd') == di.IMAGE_DD
-    assert di.get_imagetype('image.e01') == di.IMAGE_EWF
-    assert di.get_imagetype('image.unknown') == di.IMAGE_UNKNOWN
+    assert diskimage.get_imagetype('image.dd') == diskimage.IMAGE_DD
+    assert diskimage.get_imagetype('image.e01') == diskimage.IMAGE_EWF
+    assert diskimage.get_imagetype('image.unknown') == diskimage.IMAGE_UNKNOWN
 
 
 # Test getting a imagehandle from items
 def test_get_imagehandle(items):
-    i = di.get_imagehandle(items, di.IMAGE_DD)
+    i = diskimage.get_imagehandle(items, diskimage.IMAGE_DD)
     assert i
-    i = di.get_imagehandle(items, di.IMAGE_UNKNOWN)
+    i = diskimage.get_imagehandle(items, diskimage.IMAGE_UNKNOWN)
     assert i
 
 
 # Test getting a imagehandle from items
 def test_get_imagehandle_from_file():
-    i = di.get_imagehandle_from_file('data/mini.dd', di.IMAGE_DD)
+    i = diskimage.get_imagehandle_from_file('data/mini.dd', diskimage.IMAGE_DD)
     assert i
-    i = di.get_imagehandle_from_file('data/mini.dd', di.IMAGE_UNKNOWN)
+    i = diskimage.get_imagehandle_from_file('data/mini.dd', diskimage.IMAGE_UNKNOWN)
     assert i

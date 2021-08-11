@@ -3,7 +3,7 @@ import re
 import pytsk3
 import logging
 
-import diskimage.diskimage as di
+import diskimage as di
 from diskimage.item import Item
 
 logger = logging.getLogger(__name__)
