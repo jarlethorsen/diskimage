@@ -76,7 +76,7 @@ class DiskImage:
                         if item.name.lower().endswith(EXTENSIONS):
                             logger.info(f'Trying to open {item.name}...')
                             diparents = fsparents.copy()
-                            di = DiskImage.from_items([item], imagename=item.name, parents=diparents)
+                            di = DiskImage.from_items([item], imagename=item.fullpath, parents=diparents)
                             if di.filesystems:
                                 logger.info(f'Found {len(di.filesystems)} filesystems!')
                                 yield from di.get_items()

@@ -1,4 +1,5 @@
 import pytsk3
+import os
 
 
 class Item:
@@ -18,6 +19,7 @@ class Item:
     def __init__(self):
         self.name = None
         self.path = None
+        self.fullpath = None
         self.type = None
         self.inode = None
         self.parents = []
@@ -39,6 +41,7 @@ class Item:
         i.filesystem = filesystem
         i.path = path
         i.name = item.info.name.name.decode('utf-8')
+        i.fullpath = os.path.join(i.path, i.name)
         if item.info.meta:
             if item.info.meta.type == pytsk3.TSK_FS_META_TYPE_DIR:
                 i.type = 'dir'
