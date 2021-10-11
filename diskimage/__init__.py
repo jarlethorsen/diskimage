@@ -130,11 +130,12 @@ class DiskImage:
         """
         # Try to get partitiontable
         filesystems = []
+        partitionTable = None
         try:
             partitionTable = pytsk3.Volume_Info(imagehandle)
         except OSError as e:
-            if 'Error opening Volume_Info: Cannot determine partition type' in str(e):
-                partitionTable = None
+            if 'Error opening Volume_Info: Cannot determine partition type' not in str(e):
+                logger.exception(str(e))
         except (IOError, RuntimeError) as e:
             logger.exception(str(e))
             # close open handles
@@ -148,11 +149,11 @@ class DiskImage:
             # We need to manually check the filesystem (filesystemObject.info.ftype) for each partition,
             # partition.desc is not reliable for recent versions of Windows
             for partition in partitionTable:
-                if partition.table_num < 0:
+                if partition.slot_num < 0:
                     # The iterator may return objects which is not a valid partition,
                     # like "Primary Table (#0)". We need to make sure to skip those to avoid
                     # FileSystem(imagehandle) to choke up later in the process.
-                    # Skipping any entries with a negative table_num seems to do the trick.
+                    # Skipping any entries with a negative slot_num seems to do the trick.
                     continue
                 logger.debug(f'Partition {partition.addr} at sector {partition.start}')
                 try:
