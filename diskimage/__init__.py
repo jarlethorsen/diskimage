@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # diskimage.py by Jarle Thorsen
 # -*- coding: utf-8 -*-
-__version__ = '0.0.3'
+__version__ = '0.0.4'
 
 import os
 import re
