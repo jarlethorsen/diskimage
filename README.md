@@ -10,17 +10,20 @@ A python module that lets you handle disk images in an easy way.
 The tool comes with a commandline client `di` that will let you work with diskimages:
 
 ```
-usage: di <command> <options> disk-image-file
+usage: di <command> <options> diskimagefile
 
 Get information from disk-images.
 
 positional arguments:
-  disk_image
+  {fls}          Command to run. "fls" will list full path for all files found in diskimage
+  diskimagefile  The diskimage file to open
 
 optional arguments:
-  -h, --help         show this help message and exit
-  -v, --verbose      Add verbosity, -vv to enable debugging
-  --version VERSION  Print version information
+  -h, --help     show this help message and exit
+  -v, --verbose  Add verbosity, -vv to enable debugging
+  --version      Print version information
+
+Example: "di fls test.dd"
 ```
 
 or

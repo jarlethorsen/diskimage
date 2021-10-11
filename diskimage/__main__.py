@@ -8,12 +8,12 @@ import diskimage
 def init_argparse() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         usage="%(prog)s <command> <options> diskimagefile",
-        description="Get information from disk-images."
+        description="Get information from disk-images.", epilog="Example: \"%(prog)s fls test.dd\""
     )
-    parser.add_argument('command', type=str, choices=['fls'], nargs='?', help='Command to run.')
+    parser.add_argument('command', type=str, choices=['fls'], nargs='?', help='Command to run. "fls" will list full path for all files found in diskimage')
     parser.add_argument('-v', '--verbose', help='Add verbosity, -vv to enable debugging', action='count', default=0)
-    parser.add_argument('--version', help='Print version information')
-    parser.add_argument('diskimagefile', nargs='?')
+    parser.add_argument('--version', action='version', version='diskimage v'+diskimage.__version__, help='Print version information')
+    parser.add_argument('diskimagefile', help='The diskimage file to open', nargs='?')
     return parser
 
 
