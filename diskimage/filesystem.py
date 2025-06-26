@@ -29,6 +29,7 @@ class FileSystem(pytsk3.FS_Info):
         """
         self.fstype = fstype
         self.offset = offset
+        self.imagehandle = imagehandle
         # The parent objects this FileSystem belongs to
         self.parents = []
         super(FileSystem, self).__init__(imagehandle, offset=offset)
