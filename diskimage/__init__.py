@@ -188,7 +188,7 @@ class DiskImage:
 
     @staticmethod
     def from_file(imagefile):
-        """Return a DiskImage object form a local file
+        """Return a DiskImage object from a local file
 
         Args:
             imagefile (str): filepath of the imagefile to open
