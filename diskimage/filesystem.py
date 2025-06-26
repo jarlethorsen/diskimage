@@ -188,7 +188,7 @@ class FileSystem(pytsk3.FS_Info):
         Returns:
             list: list of directories
         """
-        items = [item for _, item in self.dir(path=path, inode=inode)]
+        items = self.get_directory(path=path, inode=inode)
         if items:
             return [item for item in items if item.info.meta.type == pytsk3.TSK_FS_META_TYPE_DIR]
         else:
@@ -229,7 +229,7 @@ class FileSystem(pytsk3.FS_Info):
         Returns:
             list: List of extracted files
         """
-        items = [item for _, item in self.dir(path=sourcepath)]
+        items = self.get_directory(path=sourcepath)
         if not items or items == [None]:
             return []
         extracted = []
