@@ -134,7 +134,8 @@ class DiskImage:
         try:
             partitionTable = pytsk3.Volume_Info(imagehandle)
         except OSError as e:
-            if 'Error opening Volume_Info: Cannot determine partition type' not in str(e):
+            if 'Error opening Volume_Info:' not in str(e):
+                # Do not complain just because image does not contain a partition-table
                 logger.exception(str(e))
         except (IOError, RuntimeError) as e:
             logger.exception(str(e))
