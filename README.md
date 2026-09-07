@@ -49,6 +49,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Jarle Thorsen - [@jarlethorsen](https://twitter.com/jarlethorsen) - jarlethorsen@gmail.com
+Jarle Thorsen - jarlethorsen@gmail.com
 
 Project Link: [https://github.com/jarlethorsen/diskimage](https://github.com/jarlethorsen/diskimage)
